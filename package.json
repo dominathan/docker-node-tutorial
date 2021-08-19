@@ -1,0 +1,19 @@
+{
+  "name": "node-docker-demo",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.10"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.12"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development ./node_modules/.bin/nodemon --inspect -r dotenv/config ./app.js",
+    "start": "NODE_ENV=production node app.js"
+  }
+}
