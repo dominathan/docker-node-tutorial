@@ -31,3 +31,15 @@
 - `docker-compose build --parallel` - build all containers in your dockerfile
 - `docker-compose up` - start all containers, add `-d` if you want to keep start process in background
 - `docker-compose logs -f --tail=${2:-500} CONTAINER_NAME` - show logs (limit scope)
+
+## Getting Started
+
+`cp .env.sample .env`
+
+If not using docker, make sure mongo is running
+`npm install`
+`npm run dev`
+
+If using docker-compose
+
+`docker-compose up`
