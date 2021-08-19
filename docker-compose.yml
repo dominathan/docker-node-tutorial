@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  docker-toots:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: docker-toots
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGO_HOSTNAME=db
+      - MONGO_PORT=$MONGO_PORT
+      - MONGO_DB=$MONGO_DB
+    ports:
+      - '3000:3000'
+      - '9229:9229'
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    networks:
+      - app-network
+    command: ./wait-for.sh db:27017 -- /app/node_modules/.bin/nodemon app.js
+
+  db:
+    image: mongo:4.1.8-xenial
+    container_name: db
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+  node_modules:
