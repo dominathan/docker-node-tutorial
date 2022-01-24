@@ -5,6 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: local
+      args:
+        NPM_TOKEN: NEW_TOKEN_BABY
     container_name: docker-toots
     restart: unless-stopped
     env_file: .env
